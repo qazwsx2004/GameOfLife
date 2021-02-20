@@ -1,4 +1,4 @@
-require("./Parent");
+let Parent = require("./Parent");
 module.exports = class Terrorist extends Parent {
     constructor(x, y, index) {
         super(x, y, index)

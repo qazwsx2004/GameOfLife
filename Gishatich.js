@@ -1,5 +1,5 @@
 /* Gishatich */
-require("./Parent");
+let Parent =require("./Parent");
 
 module.exports = class Gishatich extends Parent {
     constructor(x, y, index) {

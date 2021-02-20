@@ -5,15 +5,18 @@ module.exports = class Xot extends Parent {
         super(x, y, index)
         this.multiply = 0;
     }
-    mult() {
-        var empty = random(this.chooseCell(0))
-        this.multiply++
-        if (empty && this.multiply > 0) {
-            var newX = empty[0]
-            var newY = empty[1]
-            matrix[newY][newX] = 1
-            var newGr = new Grass(newX, newY, 1);
-            grassArr.push(newGr);
+    mul() {
+        this.multiply++;
+        if (this.multiply >= 5) {
+            let emptyCells = super.chooseCell(0)
+            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+            if (this.multiply >= 5 && newCell) {
+                let x = newCell[0]
+                let y = newCell[1]
+                var gr = new Grass(x, y, 1)
+                grassArr.push(gr)
+                this.multiply = 0;
+            }
         }
     }
 }

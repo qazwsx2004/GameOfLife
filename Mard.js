@@ -1,4 +1,4 @@
-require("./Parent");
+let Parent = require("./Parent");
 
 module.exports = class Mard extends Parent {
     constructor(x, y, index) {
