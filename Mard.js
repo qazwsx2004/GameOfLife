@@ -109,9 +109,9 @@ module.exports = class Mard extends Parent {
             var newY = food[1]
             matrix[newY][newX] = 4
             matrix[this.y][this.x] = 0
-            for (var i in grassArr) {
-                if (grassArr[i].x == newX && grassArr[i].y == newY) {
-                    grassArr.splice(i, 1)
+            for (var i in GrassArr) {
+                if (GrassArr[i].x == newX && GrassArr[i].y == newY) {
+                    GrassArr.splice(i, 1)
                 }
             }
             this.x = newX

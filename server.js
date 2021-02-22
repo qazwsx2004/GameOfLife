@@ -3,9 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require("fs");
-
 app.use(express.static("."));
-
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
@@ -98,10 +96,10 @@ var side = 20;
 var TerArr = [];
 var MardArr = [];
 var GishatichArr = [];
-var grassArr = [];
+var GrassArr = [];
 var XotakerArr = [];
 
-xot = require("./xot")
+Grass = require("./Grass")
 Xotaker = require("./Xotaker")
 Gishatich = require("./Gishatich")
 Mard = require("./Mard")
@@ -111,7 +109,7 @@ function createObject(matrix) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
                 var gr = new Grass(x, y, 1);
-                grassArr.push(gr)
+                GrassArr.push(gr)
             }
         else if (matrix[y][x] == 2) {
             var xt = new Xotaker(x, y, 2)
@@ -132,10 +130,10 @@ function createObject(matrix) {
     }
 }
 io.sockets.emit('send matrix', matrix)
-
+}
 function game() {
-    for (var i in grassArr) {
-        grassArr[i].mult()
+    for (var i in GrassArr) {
+        GrassArr[i].mul()
     }
     for (var i in XotakerArr) {
         XotakerArr[i].move()
@@ -169,7 +167,7 @@ function game() {
           TerArr[i].mult()
          TerArr[i].die()
       }
-} 
+      
    
     io.sockets.emit("send matrix", matrix);
 }
