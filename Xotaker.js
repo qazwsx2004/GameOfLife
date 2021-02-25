@@ -3,7 +3,7 @@ var Parent = require("./Parent");
 module.exports = class Xotaker extends Parent {
     constructor(x, y, index) {
         super(x, y, index)
-        this.energy = 45;
+        this.energy = 10;
     }
     getNewDirections() {
         this.directions = [
@@ -21,7 +21,7 @@ module.exports = class Xotaker extends Parent {
     mult() {
         var empty = super.random(this.chooseCell(0))
 
-        if (empty && this.energy > 12) {
+        if (empty && this.energy > 11) {
             var newX = empty[0]
             var newY = empty[1]
             matrix[newY][newX] = 2;
@@ -48,14 +48,14 @@ module.exports = class Xotaker extends Parent {
             var newY = food[1]
             matrix[newY][newX] = 2
             matrix[this.y][this.x] = 0
-            for (var i in grassArr) {
+            for (var i in GrassArr) {
                 if (GrassArr[i].x == newX && GrassArr[i].y == newY) {
                     GrassArr.splice(i, 1)
                 }
             }
             this.x = newX
             this.y = newY
-            this.energy += 10
+            this.energy += 20
         }
     }
     die() {

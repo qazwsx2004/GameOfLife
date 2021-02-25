@@ -1,22 +1,33 @@
 
-let Parent = require("./Parent");
-module.exports = class Grass extends Parent {
+const Parent = require("./Parent");
+
+module.exports = class Grass extends Parent{
     constructor(x, y, index) {
-        super(x, y, index)
-        this.multiply = 0;
+        super(x, y, index);
+        this.multiply = 500;
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
+
+    chooseCell(character) {
+        return super.chooseCell(character);
     }
     mul() {
         this.multiply++;
-        if (this.multiply >= 5) {
-            let emptyCells = super.random(this.chooseCell(0))
-            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-            if (this.multiply >= 5 && newCell) {
-                let x = newCell[0]
-                let y = newCell[1]
-                var gr = new Grass(x, y, 1)
-                GrassArr.push(gr)
-                this.multiply = 0;
-            }
+        var newCell = super.random(this.chooseCell(0));
+        if (this.multiply >= 8 && newCell) {
+            var newGrass = new Grass(newCell[0], newCell[1], this.index);
+            GrassArr.push(newGrass);
+            matrix[newCell[1]][newCell[0]] = 1;
+            this.multiply = 0;
         }
     }
 }

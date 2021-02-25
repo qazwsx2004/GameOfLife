@@ -1,11 +1,11 @@
 var socket = io();
 function setup() {
-    createCanvas(7 * side, 13 * side);
+    createCanvas(25 * side, 25 * side);
     background("#acacac");
 }
-var side = 30;
+var side = 20;
 
-function nkarel() {
+function nkarel(matrix) {
     console.log(matrix);
 
     for (var y = 0; y < matrix.length; y++) {
@@ -17,7 +17,7 @@ function nkarel() {
             }
             else if (obj == 2) {
                 fill("yellow");
-                rect(x * side, y * side, side, side);s
+                rect(x * side, y * side, side, side);
             }
             else if (obj == 0) {
                 fill("#acacac")

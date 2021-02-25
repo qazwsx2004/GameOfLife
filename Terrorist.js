@@ -20,7 +20,7 @@ module.exports = class Terrorist extends Parent {
             [this.x, this.y + 2],
             [this.x + 2, this.y + 2]
         ]
-        this.energy = 25;
+        this.energy = 13;
     }
     getNewDirections() {
         this.directions = [
@@ -43,9 +43,9 @@ module.exports = class Terrorist extends Parent {
         ];
     }
     mult() {
-        var empty = random(this.chooseCell(0))
+        var empty = this.random(this.chooseCell(0))
 
-        if (empty && this.energy > 35) {
+        if (empty && this.energy > 12) {
             var newX = empty[0]
             var newY = empty[1]
             matrix[newY][newX] = 5;
@@ -54,7 +54,7 @@ module.exports = class Terrorist extends Parent {
         }
     }
     move() {
-        var empty = random(this.chooseCell(0))
+        var empty = this.random(this.chooseCell(0))
         this.energy -= 4
         if (empty) {
             var newX = empty[0]
@@ -67,7 +67,7 @@ module.exports = class Terrorist extends Parent {
         }
     }
     eat() {
-        var food = random(this.chooseCell(4))
+        var food = this.random(this.chooseCell(4))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -80,11 +80,11 @@ module.exports = class Terrorist extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 10;
+            this.energy += 11;
         }
     }
     eat1() {
-        var food = random(this.chooseCell(3))
+        var food = this.random(this.chooseCell(3))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -101,7 +101,7 @@ module.exports = class Terrorist extends Parent {
         }
     }
     eat2() {
-        var food = random(this.chooseCell(2))
+        var food = this.random(this.chooseCell(2))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -114,17 +114,17 @@ module.exports = class Terrorist extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 5;
+            this.energy += 9;
         }
     }
     eat3() {
-        var food = random(this.chooseCell(1))
+        var food = this.random(this.chooseCell(1))
         if (food) {
             var newX = food[0]
             var newY = food[1]
             matrix[newY][newX] = 5
             matrix[this.y][this.x] = 0
-            for (var i in grassArr) {
+            for (var i in GrassArr) {
                 if (GrassArr[i].x == newX && GrassArr[i].y == newY) {
                     GrassArr.splice(i, 1)
                 }

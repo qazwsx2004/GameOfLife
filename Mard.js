@@ -21,7 +21,7 @@ module.exports = class Mard extends Parent {
             [this.x, this.y + 2],
             [this.x + 2, this.y + 2]
         ]
-        this.energy = 35;
+        this.energy = 12;
     }
     getNewDirections() {
         this.directions = [
@@ -44,9 +44,9 @@ module.exports = class Mard extends Parent {
         ];
     }
     mult() {
-        var empty = random(this.chooseCell(0))
+        var empty = this.random(this.chooseCell(0))
 
-        if (empty && this.energy > 20) {
+        if (empty && this.energy > 10) {
             var newX = empty[0]
             var newY = empty[1]
             matrix[newY][newX] = 4;
@@ -55,7 +55,7 @@ module.exports = class Mard extends Parent {
         }
     }
     move() {
-        var empty = random(this.chooseCell(0))
+        var empty = this.random(this.chooseCell(0))
         this.energy -= 3
         if (empty) {
             var newX = empty[0]
@@ -68,7 +68,7 @@ module.exports = class Mard extends Parent {
         }
     }
     eat() {
-        var food = random(this.chooseCell(3))
+        var food = this.random(this.chooseCell(3))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -81,11 +81,11 @@ module.exports = class Mard extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 28;
+            this.energy += 17;
         }
     }
     eat1() {
-        var food = random(this.chooseCell(2))
+        var food = this.random(this.chooseCell(2))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -98,12 +98,12 @@ module.exports = class Mard extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 15;
+            this.energy += 10;
         }
 
     }
     eat2() {
-        var food = random(this.chooseCell(1))
+        var food = this.random(this.chooseCell(1))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -116,11 +116,11 @@ module.exports = class Mard extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 10;
+            this.energy += 9;
         }
     }
     paxchel() {
-        var empty = random(this.chooseCell(5))
+        var empty = this.random(this.chooseCell(5))
         if (empty) {
             this.move()
         }

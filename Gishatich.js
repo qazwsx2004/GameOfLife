@@ -4,7 +4,7 @@ let Parent =require("./Parent");
 module.exports = class Gishatich extends Parent {
     constructor(x, y, index) {
         super(x, y, index)
-        this.energy = 14;
+        this.energy = 12;
     }
     getNewDirections() {
         this.directions = [
@@ -23,9 +23,9 @@ module.exports = class Gishatich extends Parent {
         return super.chooseCell(character);
     }
     mult() {
-        var empty = random(this.chooseCell(0))
+        var empty = this.random(this.chooseCell(0))
 
-        if (empty && this.energy > 15) {
+        if (empty && this.energy > 11) {
             var newX = empty[0]
             var newY = empty[1]
             matrix[newY][newX] = 3;
@@ -34,7 +34,7 @@ module.exports = class Gishatich extends Parent {
         }
     }
     move() {
-        var empty = random(this.chooseCell(0))
+        var empty = super.random(this.chooseCell(0))
         this.energy -= 2
         if (empty) {
             var newX = empty[0]
@@ -46,7 +46,7 @@ module.exports = class Gishatich extends Parent {
         }
     }
     eat() {
-        var food = random(this.chooseCell(2))
+        var food = this.random(this.chooseCell(2))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -59,11 +59,11 @@ module.exports = class Gishatich extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 18;
+            this.energy += 25;
         }
     }
     eat1() {
-        var food = random(this.chooseCell(1))
+        var food = this.random(this.chooseCell(1))
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -76,7 +76,7 @@ module.exports = class Gishatich extends Parent {
             }
             this.x = newX
             this.y = newY
-            this.energy += 15;
+            this.energy += 9;
         }
     }
     die() {
