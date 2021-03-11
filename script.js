@@ -43,3 +43,9 @@ function nkarel(matrix) {
         socket.on('send matrix', nkarel)
         },1000
     )
+    function kill() {
+        socket.emit("kill")
+    } 
+    function Energy(){
+        socket.emit("energy shortage")
+    }   

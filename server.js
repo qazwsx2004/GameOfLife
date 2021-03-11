@@ -1,9 +1,9 @@
+// Ոչ մի խնդիր չի տալիս button-ները աշխատում են ուշ
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var fs = require("fs");
-
 app.use(express.static("."));
 
 app.get('/', function (req, res) {
@@ -57,7 +57,7 @@ Grass = require("./Grass")
 Xotaker = require("./Xotaker")
 Gishatich = require("./Gishatich")
 Mard = require("./Mard")
-Terrorist = require("./Terrorist")
+Terroristt = require("./Terrorist")
 function createObject(matrix) {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -78,7 +78,7 @@ function createObject(matrix) {
             MardArr.push(xq);
         }
         else if (matrix[y][x] == 5) {
-            var xp = new Terrorist(x, y, 5)
+            var xp = new Terroristt(x, y, 5)
             TerArr.push(xp);
         }
     }
@@ -124,9 +124,46 @@ function game() {
    
     io.sockets.emit("send matrix", matrix);
 }
-setInterval(game,2000)
+setInterval(game,10000)
 
 io.on('connection', function (socket) {
     createObject(matrix)
 
 })
+function kill() {
+    GrassArr = [];
+    XotakerArr = [];
+    GishatichArr =[];
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            matrix[y][x] = 0;
+            
+
+        }
+    }
+    io.sockets.emit("send matrix", matrix);
+}
+function Energy(){
+    var x = Math.floor(Math.random() * matrix[0].length)
+    var y = Math.floor(Math.random() * matrix.length)
+    if(matrix[y][x] == 4){
+        MardArr.energy -= 5;
+    }
+    if(matrix[y][x] == 5){
+        TerArr.energy -= 6;
+    }
+    io.sockets.emit('send matrix', matrix);
+}
+
+
+var statistics = {};
+
+setInterval(function() {
+    statistics.Grass = GrassArr.length;
+    statistics.Xotaker = XotakerArr.length;
+    statistics.Terroristt = TerArr.length;
+    statistics.Mard = MardArr.length;
+    statistics.GishatichArr = GishatichArr.length;
+
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function(){})
+},1000)
